@@ -3,9 +3,7 @@ import { useHeaderStore } from '/src/stores/header/header.js'
 import Dashboard from '/src/views/Dashboard.vue'
 import Home from '/src/views/Home/Home.vue'
 import Login from '/src/views/Login/Login.vue'
-import Register from '/src/views/Register/Register.vue'
 import Orders from '/src/views/Orders/Orders.vue'
-import Teachers from '/src/views/Teachers/Teachers.vue'
 import Error from '/src/views/Error/Error.vue'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
@@ -29,7 +27,7 @@ const router = createRouter({
         },
         {
           path: '/settings',
-          name: 'Settings',
+          name: 'Settings'
           // component: Settings
         }
       ],
@@ -41,11 +39,6 @@ const router = createRouter({
       path: '/login',
       name: 'Login',
       component: Login
-    },
-    {
-      path: '/register',
-      name: 'Register',
-      component: Register
     },
     {
       path: '/:pathMatch(.*)*',

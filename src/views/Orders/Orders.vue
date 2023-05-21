@@ -152,17 +152,6 @@ onMounted(() => {
   <div class="p-5 relative">
     <div class="w-full flex items-center justify-between">
       <Search />
-      <button
-        @click="
-          () => {
-            editUser = null
-            toggleModal()
-          }
-        "
-        class="hover:bg-main-color duration-300 bg-main-bg text-white p-2 px-4 rounded-lg"
-      >
-        <i class="bx bx-plus text-3xl"></i>
-      </button>
     </div>
 
     <!-- DELETE USER MODAL -->

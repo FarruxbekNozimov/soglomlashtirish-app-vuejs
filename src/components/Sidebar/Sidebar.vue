@@ -19,6 +19,7 @@ const handleSignOut = () => {
     router.push('/login')
   })
 }
+console.log(getAuth().currentUser)
 </script>
 
 <template>

@@ -1,129 +1,53 @@
 <script setup>
-import { useStudentStore } from '/src/stores/students/students.js'
-import { useTeachersStore } from '/src/stores/teachers/teachers.js'
-import { useGroupsStore } from '/src/stores/groups/groups.js'
-import { useSubjectsStore } from '/src/stores/subjects/subjects.js'
-import { homeInfo } from '/src/constants/homeInfo.js'
-import { reactive } from 'vue'
-import moment from 'moment'
-const studentStore = useStudentStore()
-const teachersStore = useTeachersStore()
-const groupsStore = useGroupsStore()
-const subjectsStore = useSubjectsStore()
-
-const pagination = reactive({
-  currentPage: teachersStore.currentPage,
-  itemsPerPage: teachersStore.itemsPerPage
-})
-
-const menu = [
-  studentStore.GET_USERS.length,
-  teachersStore.GET_TEACHERS.length,
-  groupsStore.GET_GROUPS.length,
-  subjectsStore.GET_SUBJECTS.length
-]
-
-const INCREMENT_PAGE = () => {
-  if (
-    pagination.currentPage <
-    Math.ceil(teachersStore.GET_TEACHERS.length / teachersStore.itemsPerPage)
-  )
-    pagination.currentPage++
-  console.log(pagination.currentPage)
-}
-
-const DECREMENT_PAGE = () => {
-  if (pagination.currentPage > 1) {
-    pagination.currentPage--
-  }
-}
+import { getAuth } from 'firebase/auth'
 </script>
 <template>
-  <div class="m-5">
-    <div class="bg-white flex items-center justify-between p-10 px-14 rounded-xl grid-cols-2">
-      <div v-for="(item, i) in homeInfo" class="flex items-center justify-between">
-        <div class="flex items-center justify-between gap-4">
-          <span :class="'bg-' + item.color" class="p-3 text-white text-3xl rounded-full h-[55px]">
-            <i :class="item.icon"></i
-          ></span>
-          <div class="block">
-            <span class="text-md text-gray-500 block mb-2">{{ item.title }}</span>
-            <span class="text-2xl font-bold">{{ menu[i] }}</span>
+  <div class="p-5">
+    <h2 class="text-3xl text-center text-blue-900">
+      <span class="border-b-2 border-blue-900 rounded-xl py-2 px-10">Men haqimda</span>
+    </h2>
+    <div class="mt-10 mx-20 bg-white rounded-3xl p-5">
+      <p class="text-lg font-normal">
+        Men 1985-yil Toshkent shahri Yunusobod tumanida tug'ulganman. Toshkent medical universitetda
+        5 yil o'qib, hozirda okulist bo'lib ishlamoqdaman. Kelajakda o'z ishimni mutaxasisi
+        bo'lmoqchiman.
+      </p>
+      <div class="mt-7 flex items-center justify-around">
+        <div class="text-lg">
+          <div class="mb-6 flex items-center border-b-2 rounded-xl pb-2 px-3 border-blue-500">
+            <span class="font-mono font-semibold">F.I.O :</span>
+            <span class="ml-2">{{ getAuth().currentUser.displayName }}</span>
+          </div>
+          <div class="mb-6 flex items-center border-b-2 rounded-xl pb-2 px-3 border-blue-500">
+            <span class="font-mono font-semibold">Tug'ilgan sana :</span>
+            <span class="ml-2">17 July 2007</span>
+          </div>
+          <div class="mb-6 flex items-center border-b-2 rounded-xl pb-2 px-3 border-blue-500">
+            <span class="font-mono font-semibold">Website :</span>
+            <span class="ml-2">www.example.com</span>
+          </div>
+          <div class="mb-6 flex items-center border-b-2 rounded-xl pb-2 px-3 border-blue-500">
+            <span class="font-mono font-semibold">Kasbingiz :</span>
+            <span class="ml-2">Stomotolog</span>
+          </div>
+          <div class="mb-6 flex items-center border-b-2 rounded-xl pb-2 px-3 border-blue-500">
+            <span class="font-mono font-semibold">Manzil :</span>
+            <span class="ml-2">Chilonzor tuman 10-uy</span>
+          </div>
+          <div class="mb-6 flex items-center border-b-2 rounded-xl pb-2 px-3 border-blue-500">
+            <span class="font-mono font-semibold">Yoshi :</span>
+            <span class="ml-2">19 yosh</span>
+          </div>
+          <div class="mb-6 flex items-center border-b-2 rounded-xl pb-2 px-3 border-blue-500">
+            <span class="font-mono font-semibold">Telefon :</span>
+            <span class="ml-2">+998(77) 777 77 77</span>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="mt-10 relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table class="w-full text-md text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xl text-main-color bg-gray-50">
-          <tr>
-            <th scope="col" class="px-6 py-3 font-semibold">O'qituvchilar:</th>
-            <th scope="col" class="px-6 py-3"></th>
-            <th scope="col" class="px-6 py-3"></th>
-            <th scope="col" class="px-6 py-3"></th>
-            <th scope="col" class="px-6 py-3"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="teacher in teachersStore.GET_TEACHERS.slice(
-              (pagination.currentPage - 1) * pagination.itemsPerPage,
-              (pagination.currentPage - 1) * pagination.itemsPerPage + pagination.itemsPerPage
-            )"
-            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-          >
-            <th
-              scope="row"
-              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              <div class="flex items-center gap-3">
-                <img
-                  :src="teacher.img"
-                  alt=""
-                  class="w-[50px] h-[50px] rounded-full object-cover"
-                />
-                <span class="text-sm"> {{ teacher.name }} {{ teacher.surname }} </span>
-              </div>
-            </th>
-            <td class="px-6 py-4 text-main-bg font-bold text-xs">ID1234567</td>
-            <td class="px-6 py-4 flex items-center gap-3">
-              <span class="p-2 px-2 rounded-full text-2xl text-white bg-orange-400">
-                <i class="bx bx-user flex items-center"></i>
-              </span>
-              <div>
-                <span class="block text-sm">Class</span>
-                <span class="font-bold text-md text-main-color">VII A</span>
-              </div>
-            </td>
-            <td class="px-6 py-4 text-main-color font-bold text-sm">
-              <!-- {{ moment(teacher.createdAt).fromNow('h') }} -->
-            </td>
-            <td class="px-6 py-4 text-right flex items-center justify-between">
-              <i class="bx bx-printer text-3xl cursor-pointer"></i>
-              <i class="bx bx-dots-vertical-rounded text-3xl cursor-pointer"></i>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="flex items-center justify-between bg-white">
-        <span class="p-5"
-          >{{ (pagination.currentPage - 1) * pagination.itemsPerPage + 1 }}-{{
-            pagination.currentPage - 1 + pagination.itemsPerPage
-          }}
-          dan {{ teachersStore.GET_TEACHERS.length }}ta</span
-        >
-        <div class="flex items-center justify-between gap-3 p-5 px-10">
-          <i class="bx bxs-left-arrow text-lg cursor-pointer" @click="DECREMENT_PAGE"></i>
-          <span
-            v-for="el in Math.ceil(teachersStore.GET_TEACHERS.length / pagination.itemsPerPage)"
-            class="text-lg text-main-color p-1 px-3.5 rounded-full border-2 border-main-color cursor-pointer hover:bg-main-color hover:text-white duration-200"
-            :class="pagination.currentPage == el ? 'bg-main-color text-white' : ''"
-            @click="() => (pagination.currentPage = el)"
-            >{{ el }}</span
-          >
-          <i class="bx bxs-right-arrow text-lg cursor-pointer" @click="INCREMENT_PAGE"></i>
-        </div>
+        <img
+          :src="getAuth().currentUser.photoURL"
+          alt=""
+          class="w-[50%] rounded-full border-2 border-dashed border-blue-500"
+        />
       </div>
     </div>
   </div>
