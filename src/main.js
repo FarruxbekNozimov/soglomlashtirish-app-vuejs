@@ -7,14 +7,10 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
-// Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
 import { getAnalytics } from 'firebase/analytics'
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getFirestore } from 'firebase/firestore'
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: 'AIzaSyD-CwO2f7_iA0RCFKS3u2HhGk3_hq8RqcM',
   authDomain: 'soglomlashtirish.firebaseapp.com',
@@ -25,7 +21,8 @@ const firebaseConfig = {
   measurementId: 'G-96NH1JGKRB'
 }
 
-initializeApp(firebaseConfig)
+const firebaseApp = initializeApp(firebaseConfig)
+const db = getFirestore(firebaseApp)
 
 const app = createApp(App)
 
@@ -34,4 +31,4 @@ app.use(router)
 
 app.mount('#app')
 
-// project-887365633771
+export { db }

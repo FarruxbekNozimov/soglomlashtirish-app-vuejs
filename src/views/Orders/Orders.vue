@@ -6,6 +6,8 @@ import { useHeaderStore } from '/src/stores/header/header.js'
 import { students } from '../../constants/students.js'
 import Search from '/src/UI/Search.vue'
 import { toast } from 'vue3-toastify'
+import { db } from '@/main'
+import { collection, getDocs } from 'firebase/firestore'
 
 const headStore = useHeaderStore()
 const store = useStudentStore()
@@ -144,8 +146,19 @@ const DECREMENT_PAGE = () => {
   }
 }
 
-onMounted(() => {
+onMounted(async () => {
   store.SET_USER(students)
+
+  const querySnapshot = await getDocs(collection(db, 'patient'))
+  let fbPatients = []
+  querySnapshot.forEach((doc) => {
+    console.log(doc.id, ' => ', doc.data())
+    fbPatients.push({
+      id: doc.id,
+      ...doc.data()
+    })
+  })
+  console.log(fbPatients)
 })
 </script>
 <template>
