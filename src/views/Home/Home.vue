@@ -39,9 +39,7 @@ onSnapshot(collection(db, 'doctor'), (querySnapshot) => {
     </h2>
     <div class="mt-10 md:mx-1 lg:mx-20 bg-white rounded-3xl p-5">
       <p v-if="nowUser.description" class="text-lg font-normal">
-        Men 1985-yil Toshkent shahri Yunusobod tumanida tug'ulganman. Toshkent medical universitetda
-        5 yil o'qib, hozirda okulist bo'lib ishlamoqdaman. Kelajakda o'z ishimni mutaxasisi
-        bo'lmoqchiman.
+        {{ nowUser.description }}
       </p>
       <p v-else class="text-3xl text-center text-red-600">HALI YO'Q</p>
       <div class="mt-7 md:block lg:flex items-center justify-around">
