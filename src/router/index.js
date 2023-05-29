@@ -4,6 +4,7 @@ import Dashboard from '/src/views/Dashboard.vue'
 import Home from '/src/views/Home/Home.vue'
 import Login from '/src/views/Login/Login.vue'
 import Orders from '/src/views/Orders/Orders.vue'
+import Settings from '/src/views/Settings/Settings.vue'
 import Error from '/src/views/Error/Error.vue'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
@@ -27,8 +28,8 @@ const router = createRouter({
         },
         {
           path: '/settings',
-          name: 'Settings'
-          // component: Settings
+          name: 'Settings',
+          component: Settings
         }
       ],
       meta: {

@@ -1,7 +1,6 @@
 <script setup>
 import Avatar from '../../UI/Avatar.vue'
 import { useHeaderStore } from '/src/stores/header/header.js'
-import Search from '/src/UI/Search.vue'
 const store = useHeaderStore()
 </script>
 

@@ -8,7 +8,6 @@ import App from './App.vue'
 import router from './router'
 
 import { initializeApp } from 'firebase/app'
-import { getAnalytics } from 'firebase/analytics'
 import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -31,4 +30,4 @@ app.use(router)
 
 app.mount('#app')
 
-export { db }
+export { db, firebaseApp };

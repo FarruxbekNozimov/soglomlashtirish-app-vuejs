@@ -3,22 +3,40 @@ import { navLinks } from '../../constants/navLink'
 import { onMounted, ref } from 'vue'
 import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth'
 import { useRouter } from 'vue-router'
+import { db } from '@/main'
+import { collection, onSnapshot, addDoc } from 'firebase/firestore'
+
 const user = getAuth().currentUser
 const router = useRouter()
 
 const isLoggedIn = ref(false)
+const allID = ref([])
 let auth
 onMounted(() => {
   auth = getAuth()
   onAuthStateChanged(auth, (user) => {
     isLoggedIn.value = !isLoggedIn.value
   })
-})
-const handleSignOut = () => {
-  signOut(auth).then(() => {
-    router.push('/login')
+
+  onSnapshot(collection(db, 'doctor'), (querySnapshot) => {
+    const allIDs = []
+    querySnapshot.forEach((doc) => {
+      allIDs.push(doc.data().uid)
+    })
+    allID.value = allIDs
+    if (!allID.value.length || ![...allID.value].includes(getAuth().currentUser.uid)) {
+      const { displayName, photoURL, email, uid } = getAuth().currentUser
+      console.log('ADDED')
+      addDoc(collection(db, 'doctor'), {
+        fullname: displayName,
+        email: email,
+        user_photo: photoURL,
+        uid: uid
+      })
+    }
   })
-}
+})
+
 console.log(getAuth().currentUser)
 </script>
 
@@ -32,7 +50,7 @@ console.log(getAuth().currentUser)
       <div class="bg-white rounded-xl h-[96vh]">
         <div class="w-full text-center py-10">
           <img
-            :src="getAuth().currentUser.photoURL"
+            :src="user.photoURL"
             alt=""
             class="h-[100px] w-[100px] mx-auto rounded-full border border-dashed border-blue-500"
           />
@@ -52,7 +70,13 @@ console.log(getAuth().currentUser)
             </li>
             <li>
               <button
-                @click="handleSignOut"
+                @click="
+                  () => {
+                    signOut(auth).then(() => {
+                      router.push('/login')
+                    })
+                  }
+                "
                 class="flex items-center p-2 px-7 rounded-lg text-red-700 hover:text-white bg-red-100 hover:bg-red-700 w-full duration-200 text-md"
               >
                 <i class="bx bx-exit text-2xl"></i>
