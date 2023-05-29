@@ -7,7 +7,7 @@ import { collection, onSnapshot } from 'firebase/firestore'
 const orders = ref([])
 
 onMounted(() => {
-  onSnapshot(collection(db, 'patient'), (querySnapshot) => {
+  onSnapshot(collection(db, 'order'), (querySnapshot) => {
     let fbPatients = []
     querySnapshot.forEach((doc) => {
       fbPatients.push({
@@ -53,14 +53,7 @@ onMounted(() => {
                       scope="col"
                       class="py-3 px-6 font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400 text-sm"
                     >
-                      <span class="text-xs">Email</span>
-                      <i class="bx bx-down-arrow-alt"></i>
-                    </th>
-                    <th
-                      scope="col"
-                      class="py-3 px-6 font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400 text-sm"
-                    >
-                      <span class="text-xs">address</span>
+                      <span class="text-xs">Sana</span>
                       <i class="bx bx-down-arrow-alt"></i>
                     </th>
                     <th
@@ -90,10 +83,7 @@ onMounted(() => {
                       {{ order.fullname }}
                     </td>
                     <td class="py-4 px-6 text-sm font-medium text-gray-900">
-                      {{ order.email }}
-                    </td>
-                    <td class="py-4 px-6 text-sm font-medium text-gray-900">
-                      {{ order.address }}
+                      {{ order.date }}
                     </td>
                     <td class="py-4 px-6 text-sm font-medium text-gray-900">
                       {{ order.time }}

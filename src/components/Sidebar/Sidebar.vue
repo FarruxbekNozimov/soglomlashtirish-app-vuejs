@@ -26,7 +26,6 @@ onMounted(() => {
     allID.value = allIDs
     if (!allID.value.length || ![...allID.value].includes(getAuth().currentUser.uid)) {
       const { displayName, photoURL, email, uid } = getAuth().currentUser
-      console.log('ADDED')
       addDoc(collection(db, 'doctor'), {
         fullname: displayName,
         email: email,
