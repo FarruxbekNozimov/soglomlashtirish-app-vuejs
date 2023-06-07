@@ -45,38 +45,38 @@ onSnapshot(collection(db, 'doctor'), (querySnapshot) => {
       <div class="mt-7 md:block lg:flex items-center justify-around">
         <div class="text-lg">
           <div class="mb-6 flex items-center border-b-2 rounded-xl pb-2 px-3 border-blue-500">
-            <span class="font-mono font-semibold">F.I.O :</span>
-            <span v-if="nowUser.fullname" class="ml-2">{{ nowUser.fullname }}</span>
+            <span class="font-mono font-semibold text-blue-500">F.I.O :</span>
+            <span v-if="nowUser.fullname" class="ml-2 text-blue-500">{{ nowUser.fullname }}</span>
             <span v-else class="ml-2 text-red-600">HALI YO'Q</span>
           </div>
           <div class="mb-6 flex items-center border-b-2 rounded-xl pb-2 px-3 border-blue-500">
-            <span class="font-mono font-semibold">Tug'ilgan sana :</span>
-            <span v-if="nowUser.birthday" class="ml-2">{{ nowUser.birthday }}</span>
+            <span class="font-mono font-semibold text-blue-500">Tug'ilgan sana :</span>
+            <span v-if="nowUser.birthday" class="ml-2 text-blue-500">{{ nowUser.birthday }}</span>
             <span v-else class="ml-2 text-red-600">HALI YO'Q</span>
           </div>
           <div class="mb-6 flex items-center border-b-2 rounded-xl pb-2 px-3 border-blue-500">
-            <span class="font-mono font-semibold">Website :</span>
-            <span v-if="nowUser.website" class="ml-2">{{ nowUser.website }}</span>
+            <span class="font-mono font-semibold text-blue-500">Website :</span>
+            <span v-if="nowUser.website" class="ml-2 text-blue-500">{{ nowUser.website }}</span>
             <span v-else class="ml-2 text-red-600">HALI YO'Q</span>
           </div>
           <div class="mb-6 flex items-center border-b-2 rounded-xl pb-2 px-3 border-blue-500">
-            <span class="font-mono font-semibold">Kasbingiz :</span>
-            <span v-if="nowUser.job" class="ml-2">{{ nowUser.job }}</span>
+            <span class="font-mono font-semibold text-blue-500">Kasbingiz :</span>
+            <span v-if="nowUser.job" class="ml-2 text-blue-500">{{ nowUser.job }}</span>
             <span v-else class="ml-2 text-red-600">HALI YO'Q</span>
           </div>
           <div class="mb-6 flex items-center border-b-2 rounded-xl pb-2 px-3 border-blue-500">
-            <span class="font-mono font-semibold">Manzil :</span>
-            <span v-if="nowUser.address" class="ml-2">{{ nowUser.address }}</span>
+            <span class="font-mono font-semibold text-blue-500">Manzil :</span>
+            <span v-if="nowUser.address" class="ml-2 text-blue-500">{{ nowUser.address }}</span>
             <span v-else class="ml-2 text-red-600">HALI YO'Q</span>
           </div>
           <div class="mb-6 flex items-center border-b-2 rounded-xl pb-2 px-3 border-blue-500">
-            <span class="font-mono font-semibold">Yoshi :</span>
-            <span v-if="nowUser.age" class="ml-2">{{ nowUser.age }}</span>
+            <span class="font-mono font-semibold text-blue-500">Yoshi :</span>
+            <span v-if="nowUser.age" class="ml-2 text-blue-500">{{ nowUser.age }}</span>
             <span v-else class="ml-2 text-red-600">HALI YO'Q</span>
           </div>
           <div class="mb-6 flex items-center border-b-2 rounded-xl pb-2 px-3 border-blue-500">
-            <span class="font-mono font-semibold">Telefon :</span>
-            <span v-if="nowUser.phone" class="ml-2">{{ nowUser.phone }}</span>
+            <span class="font-mono font-semibold text-blue-500">Telefon :</span>
+            <span v-if="nowUser.phone" class="ml-2 text-blue-500">{{ nowUser.phone }}</span>
             <span v-else class="ml-2 text-red-600">HALI YO'Q</span>
           </div>
         </div>
